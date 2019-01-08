@@ -76,3 +76,4 @@ Licence
 Copyright
 ---------
 (c) 2018 Divante
+(c) 2019 QBO Digital
