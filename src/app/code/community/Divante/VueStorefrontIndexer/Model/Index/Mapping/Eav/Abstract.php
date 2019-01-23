@@ -56,6 +56,8 @@ abstract class Divante_VueStorefrontIndexer_Model_Index_Mapping_Eav_Abstract
             $mapping[$fieldName] = [
                 'type' => $type,
                 'fielddata' => true,
+                'analyzer' => "autocomplete",
+                'search_analyzer'=> "autocomplete_search",
                 'fields' => [
                     'keyword' => [
                         'type' => FieldInterface::TYPE_KEYWORD,

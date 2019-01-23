@@ -176,7 +176,7 @@ class Divante_VueStorefrontIndexer_Model_Index_Operations
     public function createIndex($indexIdentifier, Store $store)
     {
         $index = $this->initIndex($indexIdentifier, $store);
-        $this->client->createIndex($index->getName(), []);
+        $this->client->createIndex($index->getName(), self::getIndexSettings());
 
         /** @var Divante_VueStorefrontIndexer_Model_Index_Type $type */
         foreach ($index->getTypes() as $type) {
@@ -192,6 +192,39 @@ class Divante_VueStorefrontIndexer_Model_Index_Operations
         }
 
         return $index;
+    }
+    /**
+    * Get Language analysis index settings
+    *
+    * @return array
+    */
+    public static function getIndexSettings() 
+    {
+       return [
+         "analysis"=> [
+           "analyzer"=> [
+             "autocomplete"=> [
+               "tokenizer"=> "autocomplete",
+               "filter"=> [
+                 "lowercase"
+               ]
+             ],
+             "autocomplete_search"=> [
+               "tokenizer"=> "lowercase"
+             ]
+           ],
+           "tokenizer"=> [
+             "autocomplete"=> [
+               "type"=> "edge_ngram",
+               "min_gram"=> 2,
+               "max_gram"=> 10,
+               "token_chars"=> [
+                  "letter"
+               ]
+             ]
+           ]
+         ]
+       ];
     }
 
     /**

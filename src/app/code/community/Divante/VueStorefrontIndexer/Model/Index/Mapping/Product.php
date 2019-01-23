@@ -73,6 +73,11 @@ class Divante_VueStorefrontIndexer_Model_Index_Mapping_Product extends AbstractM
                 ]
             ];
 
+            $attributesMapping['final_price'] = [
+                'type' => FieldInterface::TYPE_TEXT,
+                'fielddata' => true
+            ];
+
             $properties = [
                 'bundle_options' => [
                     'properties' => [

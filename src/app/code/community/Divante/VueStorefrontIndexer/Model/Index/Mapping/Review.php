@@ -55,7 +55,6 @@ class Divante_VueStorefrontIndexer_Model_Index_Mapping_Review implements Mapping
             foreach ($attributes as $attributeCode => $attribute) {
                 $attributesMapping = array_merge($attributesMapping, $this->getAttributeMapping($attributeCode, $attribute));
             }
-
             /**
              * @var $generalMapping GeneralMapping
              */
@@ -80,16 +79,14 @@ class Divante_VueStorefrontIndexer_Model_Index_Mapping_Review implements Mapping
     public function getAttributes()
     {
        $attributes = array(
-                    'product_id' => ['type' => FieldInterface::TYPE_INT],
-                    'title' => ['type' => FieldInterface::TYPE_TEXT],
-                    'detail' => ['type' => FieldInterface::TYPE_TEXT],
-                    'nickname' => ['type' => FieldInterface::TYPE_TEXT],
-                    'review_entity' => ['type' => FieldInterface::TYPE_TEXT],
-                    'review_status' => ['type' => FieldInterface::TYPE_INT],
-                    'customer_id' => ['type' => FieldInterface::TYPE_INT]
+           'product_id' => ['type' => FieldInterface::TYPE_INT],
+           'detail' => ['type' => FieldInterface::TYPE_TEXT],
+           'nickname' => ['type' => FieldInterface::TYPE_TEXT],
+           'review_entity' => ['type' => FieldInterface::TYPE_TEXT],
+           'review_status' => ['type' => FieldInterface::TYPE_INT],
+           'customer_id' => ['type' => FieldInterface::TYPE_INT]
        );
-  
-        return $attributes;
+       return $attributes;
     }
 
     /**

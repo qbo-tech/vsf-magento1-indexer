@@ -49,8 +49,10 @@ class Divante_VueStorefrontIndexer_Model_Resource_Catalog_Category
         $rootCategoryId = Mage::app()->getStore($storeId)->getRootCategoryId();
         $rootCategory = Mage::getModel('catalog/category')->load($rootCategoryId);
         //$categories = Mage::getModel('catalog/category')->getCollection()->addAttributeToSelect('*')->setPageSize($limit)->load();
-        $select = $this->connection->select()->from(['e' => $this->coreResource->getTableName('catalog/category')]);
-
+        $tableName = sprintf('catalog_category_flat_store_%d', $storeId);
+        echo $tableName;
+        $select = $this->connection->select()->from(['e' => $tableName ]);
+    
         if (!empty($categoryIds)) {
             $select->where('e.entity_id IN (?)', $categoryIds);
         }
@@ -58,6 +60,7 @@ class Divante_VueStorefrontIndexer_Model_Resource_Catalog_Category
         $path = "1/{$rootCategory->getId()}%";
         //$select->where('path LIKE ?', $path);
         $select->where('e.entity_id > ?', $fromId);
+        $select->where('e.include_in_menu = ?', 1);
         $select->limit($limit);
         $select->order('e.entity_id ASC');
 
